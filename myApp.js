@@ -11,9 +11,15 @@ app.get("/", function(req, res) {
   res.sendFile(filePath);
 });
 
-const message = {"message":"Hello json"};
+const message = {"message":"Hello json"}
+const mySecret = process.env['MESSAGE_STYLE']
+
 app.get("/json", function(req, res) {
-  res.json(message);
+  if (mySecret === 'uppercase') {
+    return res.json(message.message.toUpperCase());
+  }
+  return res.json(message);
 });
+
 
 module.exports = app;
