@@ -1,11 +1,14 @@
 let express = require('express');
 let app = express();
 
-console.log("Hello World");
+const assetPath = __dirname + "/public"
 
-const path = __dirname + "/views/index.html"
+app.use("/public", express.static(assetPath))
+
+const filePath = __dirname + "/views/index.html"
+
 app.get("/", function(req, res) {
-  res.sendFile(path)
+  res.sendFile(filePath)
 })
 
 module.exports = app;
